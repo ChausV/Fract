@@ -53,23 +53,23 @@ USE_MATH = -lm
 
 all: $(NAME)
 
-#$(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-#	$(CC) $(FLAGS) -o $(NAME) $(USE_LIBFT) $(USE_LIBMLX) $(USE_MATH) \
+$(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(USE_LIBFT) $(USE_LIBMLX) $(USE_MATH) \
 	$(MLX_FRAMEWORKS) $(OBJ)
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $(USE_LIBFT) -L /usr/local/lib/ -lmlx \
-	$(MLX_FRAMEWORKS) $(OBJ)
+#$(NAME): $(LIBFT) $(OBJ)
+#	$(CC) $(FLAGS) -o $(NAME) $(USE_LIBFT) -L /usr/local/lib/ -lmlx \
+#	$(MLX_FRAMEWORKS) $(OBJ)
 
 $(LIBFT):
 	make -C $(LIBFT_PATH)
 
-#$(LIBMLX):
-#	make -C $(LIBMLX_PATH)
+$(LIBMLX):
+	make -C $(LIBMLX_PATH)
 
 %.o: %.c $(HEADER)
-#	$(CC) -c $(FLAGS) $(LIBFT_H) $(LIBMLX_H) $<
-	$(CC) -c $(FLAGS) $(LIBFT_H) $<
+	$(CC) -c $(FLAGS) $(LIBFT_H) $(LIBMLX_H) $<
+#	$(CC) -c $(FLAGS) $(LIBFT_H) $<
 
 clean:
 	rm -f $(OBJ)
@@ -78,7 +78,7 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	make -C $(LIBFT_PATH) fclean
-#	make -C $(LIBMLX_PATH) clean
+	make -C $(LIBMLX_PATH) clean
 
 re: fclean all
 
